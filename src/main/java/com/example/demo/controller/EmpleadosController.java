@@ -53,10 +53,10 @@ public class EmpleadosController {
 		}
 	}
 	
-	/*@GetMapping("/consultaNombre/{nombre}")
+	@GetMapping("/consultaNombre/{nombre}")
 	public ResponseEntity<Empleado> consultaEmpleadoPorNombre(@PathVariable String nombre) {
 		return new ResponseEntity<>(empleadoService.consultaPorNombre(nombre),HttpStatus.OK);
-	}*/
+	}
 	
 	@GetMapping("/consultaDepartamento/{departamento}")
 	public ResponseEntity<List<Empleado>> consultaEmpleadosPorDepartamento(@PathVariable String departamento) {
