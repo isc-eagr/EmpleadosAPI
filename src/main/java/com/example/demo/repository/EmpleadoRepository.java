@@ -18,10 +18,12 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer>{
 	
 	public List<Empleado> findBySueldoGreaterThan(Double sueldo);
 	
+	public List<Empleado> findByNombreLikeOrderByDepartamentoDesc(String nombre);
+	
+	
 	//GreaterThan >
 	//LessThan <
 	//GreaterThanEquals >=
 	//LessThanEquals <=
-	//Equals = --por confirmar
 	
 }

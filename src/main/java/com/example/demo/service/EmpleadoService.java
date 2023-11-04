@@ -40,7 +40,9 @@ public class EmpleadoService {
 		return empleadoRepository.findBySueldoGreaterThan(sueldo);
 	}
 	
-
+	public List<Empleado> consultaPorNombreLike(String nombre) {
+		return empleadoRepository.findByNombreLikeOrderByDepartamentoDesc("%"+nombre+"%");
+	}
 
 	//saveAll(List<Empleado>) --inserta o actualiza varios registros
 	//findAll() --nos da una lista con todos los registros

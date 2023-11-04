@@ -53,10 +53,10 @@ public class EmpleadosController {
 		}
 	}
 	
-	@GetMapping("/consultaNombre/{nombre}")
+	/*@GetMapping("/consultaNombre/{nombre}")
 	public ResponseEntity<Empleado> consultaEmpleadoPorNombre(@PathVariable String nombre) {
 		return new ResponseEntity<>(empleadoService.consultaPorNombre(nombre),HttpStatus.OK);
-	}
+	}*/
 	
 	@GetMapping("/consultaDepartamento/{departamento}")
 	public ResponseEntity<List<Empleado>> consultaEmpleadosPorDepartamento(@PathVariable String departamento) {
@@ -86,6 +86,10 @@ public class EmpleadosController {
 			logger.info("El empleado se actualizò correctamente");
 			return new ResponseEntity<>(empleadoService.insertaOActualizaEmpleado(emp),HttpStatus.OK);	
 		}
-		
+	}
+	
+	@GetMapping("/consultaPorNombreLike/{nombre}")
+	public ResponseEntity<List<Empleado>> consultaPorSueldoMayorQue(@PathVariable String nombre) {
+		return new ResponseEntity<>(empleadoService.consultaPorNombreLike(nombre),HttpStatus.OK);
 	}
 }
