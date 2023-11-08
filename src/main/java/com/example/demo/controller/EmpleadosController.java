@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ReportePorDeptoDTO;
 import com.example.demo.entity.Empleado;
 import com.example.demo.service.EmpleadoService;
 
@@ -88,8 +90,31 @@ public class EmpleadosController {
 		}
 	}
 	
+	@DeleteMapping("/baja/{id}")
+	public ResponseEntity<Void> actualizarEmpleado(@PathVariable Integer id) {
+		empleadoService.baja(id);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	@GetMapping("/consultaPorNombreLike/{nombre}")
 	public ResponseEntity<List<Empleado>> consultaPorSueldoMayorQue(@PathVariable String nombre) {
 		return new ResponseEntity<>(empleadoService.consultaPorNombreLike(nombre),HttpStatus.OK);
 	}
+	
+	@GetMapping("/reportePorDepto")
+	public ResponseEntity<List<ReportePorDeptoDTO>> reportePorDepto(){
+		return new ResponseEntity<>(empleadoService.reportePorDepto(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/reportePorDeptoFiltrado/{sueldo}")
+	public ResponseEntity<List<ReportePorDeptoDTO>> reportePorDeptoFiltrado(@PathVariable Double sueldo){
+		return new ResponseEntity<>(empleadoService.reportePorDeptoFiltrado(sueldo),HttpStatus.OK);
+	}
+	
+	@PutMapping("/actualizarSueldoMinimo/{sueldoMinimo}/{sueldoUmbral}")
+	public ResponseEntity<Integer> actualizarSueldoMinimo(@PathVariable Double sueldoMinimo, @PathVariable Double sueldoUmbral){
+		return new ResponseEntity<>(empleadoService.actualizarSueldoMinimo(sueldoMinimo, sueldoUmbral),HttpStatus.OK);
+	}
+	
 }
